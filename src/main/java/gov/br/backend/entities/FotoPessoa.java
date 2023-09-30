@@ -3,7 +3,6 @@ package gov.br.backend.entities;
 import jakarta.persistence.*;
 
 import java.util.Date;
-import java.util.List;
 
 @Entity
 public class FotoPessoa {
@@ -11,8 +10,9 @@ public class FotoPessoa {
     @Column(name = "fp_id")
     private Integer id;
 
-    @Column(name = "pes_id")
-    private Integer pesId;
+    @ManyToOne
+    @JoinColumn(name = "pes_id")
+    private Pessoa pesId;
 
     @Column(name = "fp_data")
     private Date data;

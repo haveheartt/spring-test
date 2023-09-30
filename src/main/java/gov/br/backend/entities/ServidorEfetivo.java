@@ -1,16 +1,13 @@
 package gov.br.backend.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-
-import java.util.Date;
+import jakarta.persistence.*;
 
 @Entity
 public class ServidorEfetivo {
     @Id
-    @Column(name = "pes_id")
-    private Integer pesId;
+    @ManyToOne
+    @JoinColumn(name = "pes_id")
+    private Pessoa pesId;
 
     @Column(name = "se_matricula")
     private String matricula;

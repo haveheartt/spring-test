@@ -1,8 +1,6 @@
 package gov.br.backend.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Date;
 
@@ -12,11 +10,13 @@ public class Lotacao {
     @Column(name = "lot_id")
     private Integer lotId;
 
-    @Column(name = "pes_id")
-    private Integer pesId;
+    @ManyToOne
+    @JoinColumn(name = "pes_id")
+    private Pessoa pesId;
 
-    @Column(name = "unid_id")
-    private Integer unidId;
+    @ManyToOne
+    @JoinColumn(name = "unid_id")
+    private Unidade unidId;
 
     @Column(name = "lot_data_lotacao")
     private Date dataLotacao;

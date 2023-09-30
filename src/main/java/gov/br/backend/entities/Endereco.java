@@ -2,6 +2,8 @@ package gov.br.backend.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class Endereco {
     @Id
@@ -24,6 +26,20 @@ public class Endereco {
     @JoinColumn(name = "cid_id")
     private Cidade cidade ;
 
-    public Endereco() {
-    }
+    @ManyToMany
+    @JoinTable(
+            name = "pessoa_endereco",
+            joinColumns = { @JoinColumn(name = "end_id") },
+            inverseJoinColumns = { @JoinColumn(name = "pes_id") }
+    )
+    private List<Pessoa> pessoaList;
+
+    @ManyToMany
+    @JoinTable(
+            name = "unidade_endereco",
+            joinColumns = { @JoinColumn(name = "end_id") },
+            inverseJoinColumns = { @JoinColumn(name = "unid_id") }
+    )
+    private List<Unidade> unidadeList;
+
 }

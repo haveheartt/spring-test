@@ -1,10 +1,8 @@
 package gov.br.backend.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
-import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Unidade {
@@ -18,6 +16,16 @@ public class Unidade {
     @Column(name = "unid_sigla")
     private String sigla;
 
+    @OneToMany
+    @JoinColumn(name = "unid_id")
+    private List<Lotacao> lotacaoList;
 
+    @ManyToMany
+    @JoinTable(
+            name = "unidade_endereco",
+            joinColumns = { @JoinColumn(name = "unid_id") },
+            inverseJoinColumns = { @JoinColumn(name = "end_id") }
+    )
+    private List<Endereco> enderecoList;
 
 }
